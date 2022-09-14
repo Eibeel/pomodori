@@ -1,10 +1,23 @@
 import { useState, useEffect } from "react";
+import ChangeStatus from "./helpers/ChangeStatus";
+import { formatMinutes } from "./helpers/formatMinutes"
+import { GlobalStyle } from "./styleComponents/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styleComponents/theme";
+import { TopBar } from "./layouts/TopBar";
+import { Countdown } from "./layouts/Countdown";
+import { Mode } from "./layouts/Mode";
+import { TimerScreen } from "./layouts/TimerScreen";
+import { Buttons } from "./layouts/Buttons";
+import { IconoirProvider, PauseOutline, PlayOutline, Undo } from 'iconoir-react';
+import { Wrapper } from "./layouts/Wrapper";
+
 
 function App() {
-  const [minuteFocus, setMinuteFocus] = useState(25)
-  const [minuteLong, setMinuteLong] = useState(15)
-  const [minuteShort, setMinuteShort] = useState(5)
-  const [mode, setMode] = useState('Focus');
+  const minuteFocus = 25;
+  const minuteShort = 5;
+  const minuteLong = 15;
+  const [mode, setMode] = useState('FOCUS');
   const [secondsTime, setSecondsTime] = useState(minuteFocus * 60);
   const [active, setActive] = useState(false);
 
@@ -27,40 +40,40 @@ function App() {
     setActive(false);
   };
 
-
   const handleReset = () => {
-    setActive(false);
-    setMode('Focus')
-    setSecondsTime(minuteFocus * 60);
-  };
-
-  const handleModeShort = () => {
-    setActive(false);
-    setMode('Short Break')
-    setSecondsTime(minuteShort * 60);
-  };
-
-  const handleModeLong = () => {
-    setActive(false);
-    setMode('Long Break')
-    setSecondsTime(minuteLong * 60);
-  };
-
-  const formatMinutes = (seconds) => {
-    return (`${Math.floor(seconds / 60)}: ${(seconds % 60 > 9) ? seconds % 60 : "0" + (seconds % 60)}`)
+    setActive(false)
+    setSecondsTime(minuteFocus * 60)
   }
 
   return (
     <div className="App">
-      <button onClick={setActive}>Play</button>
-      <button onClick={handlePause}>Pause</button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleReset}>Focus</button>
-      <button onClick={handleModeShort}>Short</button>
-      <button onClick={handleModeLong}>Long</button>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Wrapper>
+        <TopBar />
+          <TimerScreen>
+            <Countdown>{formatMinutes(secondsTime)}</Countdown>
+            <Mode>{mode}</Mode>
+            <ChangeStatus
+              setActive={setActive}
+              setSecondsTime={setSecondsTime}
+              setMode={setMode}
+              minuteFocus={minuteFocus}
+              minuteShort={minuteShort}
+              minuteLong={minuteLong}
+            />
+          </TimerScreen>
 
-      <h2>{formatMinutes(secondsTime)}</h2>
-      <h2>{mode}</h2>
+          <Buttons>
+            <IconoirProvider iconProps={
+              {color: '#adb5bd', width: '32px', height: '32px'}}>
+              <PlayOutline className="buttonIcon" onClick={setActive} />
+              <PauseOutline className="buttonIcon" onClick={handlePause} />
+              <Undo className="buttonIcon" onClick={handleReset}/>
+            </IconoirProvider>
+          </Buttons>
+        </Wrapper>
+      </ThemeProvider>
     </div>
   );
 }

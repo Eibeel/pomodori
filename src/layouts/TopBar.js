@@ -1,4 +1,3 @@
-// import github from "../assets/github.svg"
 import styled from "styled-components";
 import { GitHub } from "iconoir-react";
 

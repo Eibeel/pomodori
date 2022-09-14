@@ -13,7 +13,12 @@ This small app was created as a challenge and practice on React Hooks, in this c
 
 ## Technologies
 
-Pomodori use: **[React Hooks](https://reactjs.org/)**, Components, Props and **[Iconoir](https://iconoir.com/)** an icon library.
+Pomodori use: 
+- **[React Hooks](https://reactjs.org/)**
+- Components
+- Props
+- **[Iconoir](https://iconoir.com/)** an icon library
+- **[Style Components](https://styled-components.com/)**
 
 ## Some inspiration...
 Github Repo: **[Astroud](https://github.com/astroud/pomodoro-react-app)**

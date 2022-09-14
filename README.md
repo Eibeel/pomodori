@@ -2,7 +2,7 @@
 
 - Organize your time and get away from distractions.
 - Designed with **[Figma](https://www.figma.com/file/fnQSsiMvwXr48Egk6HI3EK/Pomodori?node-id=0%3A1)** and built with **[React](https://reactjs.org/)**.
-- **[Look here]()** 🚀
+- **[Look here](https://eibeel.github.io/pomodori-react-app/)** 🚀
 
 ## Preview
 ![Texto alternativo](/src/assets/preview.jpg)

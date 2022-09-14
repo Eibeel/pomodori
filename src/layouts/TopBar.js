@@ -1,5 +1,6 @@
-import github from "../assets/github.svg"
+// import github from "../assets/github.svg"
 import styled from "styled-components";
+import { GitHub } from "iconoir-react";
 
 const TopBarStyle = styled.nav`
   align-items: center;
@@ -20,7 +21,7 @@ export const TopBar = () => {
     <TopBarStyle>
       <span id="title">Pomodori</span>
       <a href="https://github.com/Eibeel/pomodori-react-app">
-        <img src={github} alt="GitHub" />
+        <GitHub color="#667080" strokeWidth={2} height={28} width={28}/>
       </a>
     </TopBarStyle>
   );

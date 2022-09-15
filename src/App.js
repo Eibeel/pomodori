@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useSound from 'use-sound';
 import ChangeStatus from "./helpers/ChangeStatus";
 import { formatMinutes } from "./helpers/formatMinutes"
 import { GlobalStyle } from "./styleComponents/GlobalStyle";
@@ -11,7 +12,7 @@ import { TimerScreen } from "./layouts/TimerScreen";
 import { Buttons } from "./layouts/Buttons";
 import { IconoirProvider, PauseOutline, PlayOutline, Undo } from 'iconoir-react';
 import { Wrapper } from "./layouts/Wrapper";
-
+import timeOutSfx from "./sound/timeOut.mp3"
 
 function App() {
   const minuteFocus = 25;
@@ -20,6 +21,7 @@ function App() {
   const [mode, setMode] = useState('FOCUS');
   const [secondsTime, setSecondsTime] = useState(minuteFocus * 60);
   const [active, setActive] = useState(false);
+  const [timeOut] = useSound(timeOutSfx)
 
   useEffect(() => {
     if (active) {
@@ -30,11 +32,12 @@ function App() {
       if (secondsTime === 0) {
         clearInterval(iterator);
         setActive(false);
+        timeOut()
       }
 
       return () => clearInterval(iterator);
     }
-  }, [active, secondsTime]);
+  }, [active, secondsTime, timeOut]);
 
   const handlePause = () => {
     setActive(false);

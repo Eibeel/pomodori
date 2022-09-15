@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import useSound from 'use-sound';
 import ChangeStatus from "./helpers/ChangeStatus";
@@ -15,7 +16,7 @@ import { Wrapper } from "./layouts/Wrapper";
 import timeOutSfx from "./sound/timeOut.mp3"
 
 function App() {
-  const minuteFocus = 25;
+  const minuteFocus = 0.1;
   const minuteShort = 5;
   const minuteLong = 15;
   const [mode, setMode] = useState('FOCUS');
